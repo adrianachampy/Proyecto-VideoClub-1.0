@@ -23,7 +23,7 @@ class Soporte {
     }
 
     public function getPrecioConIva(): float {
-        return $this->precio * static::$IVA;
+        return $this->precio * (1 + static::$IVA);
     }
 
     /**
