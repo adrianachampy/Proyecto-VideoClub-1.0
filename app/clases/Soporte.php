@@ -2,7 +2,6 @@
 
 namespace clases;
 
-class Soporte
-{
+class Soporte {
 
 }
