@@ -3,34 +3,28 @@
 namespace clases;
 
 class Soporte {
-    public string $titulo;
-    protected int $numero;
-    private float $precio;
+
     private static float $IVA = 0.21;
 
-    public function __construct(string $titulo, int $numero, float $precio) {
-        $this->titulo = $titulo;
-        $this->numero = $numero;
-        $this->precio = $precio;
-    }
+    public function __construct(
+        public string $titulo,
+        protected int $numero,
+        private float $precio
+    ) { }
 
-    /**
-     * @return float
-     */
-    public function getPrecio(): float
-    {
+    public function getPrecio(): float {
         return $this->precio;
     }
 
     public function getPrecioConIva(): float {
         return $this->precio * (1 + static::$IVA);
     }
+    /*Si el IVA es fijo y nunca va a cambiar por tipo de producto:
+    Puedes poner self::$IVA sin ningún problema.
+    Si quieres dejar el código preparado por si una clase hija cambia el IVA:
+    Se usa static::$IVA*/
 
-    /**
-     * @return int
-     */
-    public function getNumero(): int
-    {
+    public function getNumero(): int {
         return $this->numero;
     }
 
