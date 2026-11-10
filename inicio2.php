@@ -12,7 +12,7 @@ $cliente2 = new Cliente("Clark Kent", 33);
 
 //mostramos el número de cada cliente creado
 echo "<br>El identificador del cliente 1 es: " . $cliente1->getNumero();
-echo "<br>El identificador del cliente 2 es: " . $cliente2->getNumero();
+echo "<br>El identificador del cliente 2 es: " . $cliente2->getNumero() . "<br>";
 
 //instancio algunos soportes
 $soporte1 = new CintaVideo("Los cazafantasmas", 23, 3.5, 107);

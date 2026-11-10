@@ -41,7 +41,7 @@ class Cliente {
 
     public function alquilar(Soporte $s): bool {
         if ($this->tieneAlquilado($s)) {
-            echo "<br>El cliente ya tiene alquilado el soporte : ".$this->titulo."<br>";
+            echo "<br>El cliente ya tiene alquilado el soporte : ". $s->titulo ."<br>";
             return false;
         }
 
@@ -52,7 +52,7 @@ class Cliente {
 
         $this->soportesAlquilados[] = $s;
         $this->numSoportesAlquilados++;
-        echo "<br>Alquiler realizado con éxito: ".$s->titulo;
+        echo "<br>Alquiler realizado con éxito: ".$s->titulo . "<br>";
         return true;
     }
 
@@ -62,22 +62,22 @@ class Cliente {
             if($soporte->getNumero() === $numSoporte) {
                 unset($this->soportesAlquilados[$index]);
                 $this->soportesAlquilados = array_values($this->soportesAlquilados);
-                echo "<br>Soporte devuelto: Numero ".$numSoporte;
+                echo "<br>Soporte devuelto: Numero ".$numSoporte . "<br>";
                 return true;
             }
         }
-        echo "<br>El cliente no tiene alquilado ningun soporte con el numero ".$numSoporte;
+        echo "<br>El cliente no tiene alquilado ningun soporte con el numero ".$numSoporte . "<br>";
         return false;
     }
 
     public function listarAlquileres(): void {
-        echo "<br><strong>El cliente tiene ".count($this->soportesAlquilados)." alquileres: </strong>";
+        echo "<br><strong>El cliente tiene ".count($this->soportesAlquilados)." alquileres: </strong><br>";
         if (empty($this->soportesAlquilados)) {
             echo "<br>No tiene ningún soporte alquilado actualmente";
         } else {
             foreach ($this->soportesAlquilados as $soporte) {
                 $soporte->muestraResumen();
-                echo "<br>------------";
+                echo "<br>------------<br>";
             }
         }
     }

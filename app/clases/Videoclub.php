@@ -9,14 +9,14 @@ class Videoclub {
     private array $socios = [];
     private int $numSocios = 0;
 
-    // Solo pedimos el nombre al hacer "new Videoclub('Nombre')"
+
     public function __construct(
         private string $nombre
     ) {}
 
     private function incluirProducto(Soporte $producto): void{
         $this->productos[] = $producto;
-        echo "<br>Incluido soporte número " . $producto->getNumero();
+        echo "<br>Incluido soporte número " . $producto->getNumero() ."<br>";
     }
 
     public function incluirCintaVideo(string $titulo, float $precio, int $duracion): void {
@@ -41,14 +41,14 @@ class Videoclub {
         $this->numSocios++;
         $socio = new Cliente($nombre, $this->numSocios, $maxAlquileresConcurrentes);
         $this->socios[] = $socio;
-        echo "<br>Incluido socio numero " . $this->numSocios;
+        echo "<br>Incluido socio numero " . $this->numSocios . "<br>";
     }
 
     public function listarProductos(): void {
         echo "<br><h3>Listado de productos del videoclub " . $this->nombre . ":</h3>";
         foreach ($this->productos as $producto) {
             $producto->muestraResumen();
-            echo"<br>-----------------";
+            echo"<br>-----------------<br>";
         }
     }
 
@@ -56,11 +56,11 @@ class Videoclub {
         echo "<br><h3>Listado de socios del videoclub " . $this->nombre . ":</h3>";
         foreach ($this->socios as $socio) {
             $socio->muestraResumen();
-            echo"<br>-----------------";
+            echo"<br>-----------------<br>";
         }
     }
 
-    public function alquilarSocioProducto(int $numeroCliente, int $numeroSoporte){
+    public function alquilarSocioProducto(int $numeroCliente, int $numeroSoporte): bool{
         $clienteEncontrado = null; //Se inicializa en null
         foreach ($this->socios as $socio) {
             if ($numeroCliente == $socio->getNumero()) {
