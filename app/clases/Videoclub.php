@@ -4,8 +4,91 @@ namespace clases;
 
 class Videoclub {
 
+    private array $productos = [];
+    private int $numProductos = 0;
+    private array $socios = [];
+    private int $numSocios = 0;
 
+    // Solo pedimos el nombre al hacer "new Videoclub('Nombre')"
+    public function __construct(
+        private string $nombre
+    ) {}
 
+    private function incluirProducto(Soporte $producto): void{
+        $this->productos[] = $producto;
+        echo "<br>Incluido soporte número " . $producto->getNumero();
+    }
+
+    public function incluirCintaVideo(string $titulo, float $precio, int $duracion): void {
+        $this->numProductos++;
+        $cinta = new CintaVideo($titulo, $this->numProductos, $precio, $duracion);
+        $this->incluirProducto($cinta);
+    }
+
+    public function incluirDvd(string $titulo, float $precio, string $idiomas, string $pantalla): void {
+        $this->numProductos++;
+        $dvd = new Dvd($titulo, $this->numProductos, $precio, $idiomas, $pantalla);
+        $this->incluirProducto($dvd);
+    }
+
+    public function incluirJuego(string $titulo, float $precio, string $consola, int $minJ, int $maxJ): void {
+        $this->numProductos++;
+        $juego = new Juego($titulo, $this->numProductos, $precio, $consola, $minJ, $maxJ);
+        $this->incluirProducto($juego);
+    }
+
+    public function incluirSocio(string $nombre, int $maxAlquileresConcurrentes = 3): void {
+        $this->numSocios++;
+        $socio = new Cliente($nombre, $this->numSocios, $maxAlquileresConcurrentes);
+        $this->socios[] = $socio;
+        echo "<br>Incluido socio numero " . $this->numSocios;
+    }
+
+    public function listarProductos(): void {
+        echo "<br><h3>Listado de productos del videoclub " . $this->nombre . ":</h3>";
+        foreach ($this->productos as $producto) {
+            $producto->muestraResumen();
+            echo"<br>-----------------";
+        }
+    }
+
+    public function listarSocios(): void {
+        echo "<br><h3>Listado de socios del videoclub " . $this->nombre . ":</h3>";
+        foreach ($this->socios as $socio) {
+            $socio->muestraResumen();
+            echo"<br>-----------------";
+        }
+    }
+
+    public function alquilarSocioProducto(int $numeroCliente, int $numeroSoporte){
+        $clienteEncontrado = null; //Se inicializa en null
+        foreach ($this->socios as $socio) {
+            if ($numeroCliente == $socio->getNumero()) {
+                $clienteEncontrado = $socio;
+                break;
+            }
+        }
+
+        if ($clienteEncontrado == null) {
+            echo "El cliente numero " . $numeroCliente . " no existe";
+            return false;
+        }
+
+        $soporteEncontrado = null;
+        foreach($this->productos as $producto){
+            if ($numeroSoporte == $producto->getNumero()) {
+                $soporteEncontrado = $producto;
+                break;
+            }
+        }
+
+        if ($soporteEncontrado == null) {
+            echo "El soporte numero " . $numeroSoporte . " no existe";
+            return false;
+        }
+
+        return $clienteEncontrado->alquilar($soporteEncontrado);
+    }
 
 
 }
