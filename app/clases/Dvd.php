@@ -1,6 +1,6 @@
 <?php
 
-namespace clases;
+namespace Dwes\ProyectoVideoclub;
 
 class Dvd extends Soporte {
 

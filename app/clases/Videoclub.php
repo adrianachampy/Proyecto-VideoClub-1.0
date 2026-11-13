@@ -1,6 +1,6 @@
 <?php
 
-namespace clases;
+namespace Dwes\ProyectoVideoclub;
 
 class Videoclub {
 
@@ -60,7 +60,7 @@ class Videoclub {
         }
     }
 
-    public function alquilarSocioProducto(int $numeroCliente, int $numeroSoporte): bool{
+    public function alquilarSocioProducto(int $numeroCliente, int $numeroSoporte): Videoclub{
         $clienteEncontrado = null; //Se inicializa en null
         foreach ($this->socios as $socio) {
             if ($numeroCliente == $socio->getNumero()) {
@@ -71,7 +71,7 @@ class Videoclub {
 
         if ($clienteEncontrado == null) {
             echo "El cliente numero " . $numeroCliente . " no existe";
-            return false;
+            return $this;
         }
 
         $soporteEncontrado = null;
@@ -84,7 +84,7 @@ class Videoclub {
 
         if ($soporteEncontrado == null) {
             echo "El soporte numero " . $numeroSoporte . " no existe";
-            return false;
+            return $this;
         }
 
         return $clienteEncontrado->alquilar($soporteEncontrado);

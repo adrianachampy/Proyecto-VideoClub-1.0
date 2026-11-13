@@ -1,6 +1,6 @@
 <?php
 
-namespace clases;
+namespace Dwes\ProyectoVideoclub;
 
 abstract class Soporte implements Resumible {
 

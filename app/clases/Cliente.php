@@ -1,6 +1,6 @@
 <?php
 
-namespace clases;
+namespace Dwes\ProyectoVideoclub;
 
 class Cliente {
 
@@ -39,21 +39,21 @@ class Cliente {
         return false;
     }
 
-    public function alquilar(Soporte $s): bool {
+    public function alquilar(Soporte $s): Cliente {
         if ($this->tieneAlquilado($s)) {
             echo "<br>El cliente ya tiene alquilado el soporte : ". $s->titulo ."<br>";
-            return false;
+            return $this;
         }
 
         if (count($this->soportesAlquilados) >= $this->maxAlquilerConcurrente) {
             echo "<br>El cliente ha alcanzado el cupo maximo: ".$this->maxAlquilerConcurrente."<br>";
-            return false;
+            return $this;
         }
 
         $this->soportesAlquilados[] = $s;
         $this->numSoportesAlquilados++;
         echo "<br>Alquiler realizado con éxito: ".$s->titulo . "<br>";
-        return true;
+        return $this;
     }
 
     public function devolver(int $numSoporte): bool {

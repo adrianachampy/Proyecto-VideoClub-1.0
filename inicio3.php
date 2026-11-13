@@ -22,14 +22,14 @@ $vc->listarProductos();
 $vc->incluirSocio("Amancio Ortega");
 $vc->incluirSocio("Pablo Picasso", 2);
 
-$vc->alquilarSocioProducto(2,2);
-$vc->alquilarSocioProducto(2,3);
-//alquilo otra vez el soporte 2 al socio 1.
-// no debe dejarme porque ya lo tiene alquilado
-$vc->alquilarSocioProducto(2,2);
-//alquilo el soporte 6 al socio 1.
-//no se puede porque el socio 1 tiene 2 alquileres como máximo
-$vc->alquilarSocioProducto(2,6);
+$vc->alquilarSocioProducto(2,2)
+    ->alquilarSocioProducto(2,3)
+        //alquilo otra vez el soporte 2 al socio 1.
+        // no debe dejarme porque ya lo tiene alquilado
+    ->alquilarSocioProducto(2,2)
+        //alquilo el soporte 6 al socio 1.
+        //no se puede porque el socio 1 tiene 2 alquileres como máximo
+    ->alquilarSocioProducto(2,6);
 
 //lista de socios
 $vc->listarSocios();
